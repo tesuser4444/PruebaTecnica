@@ -9,6 +9,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const user = getUser();
+    
     if (!user) {
       router.push("/login");
     }
