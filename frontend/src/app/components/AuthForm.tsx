@@ -91,6 +91,13 @@ export default function AuthForm({ isLogin }: AuthFormProps) {
           }
           saveToken(response.token)
           window.location.href = '/dashboard';
+        }else{
+          setFormData({
+            email: "",
+            password: "",
+            name: "",
+          });
+          setErrors({}); // Clear any existing errors
         }
       } else if ('error' in response) {
         toast.error(response.error.message || "Validation error occurred");
@@ -142,6 +149,7 @@ export default function AuthForm({ isLogin }: AuthFormProps) {
           className="w-full p-2 border rounded text-gray-900"
           required
         />
+        <p className="text-red-500 text-sm">Minmium 8 characters it must have at least one special character, one uppercase, one lowercase</p>
         {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
       </div>
       <button
