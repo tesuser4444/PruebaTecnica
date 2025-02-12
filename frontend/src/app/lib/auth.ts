@@ -1,15 +1,22 @@
-import axios from "axios";
+const isBrowser = () => typeof window !== "undefined";
 
-export const login = async (credentials: { email: string; password: string }) => {
-  const { data } = await axios.post("/api/auth/login", credentials);
-  localStorage.setItem("token", data.token);
+export const saveToken = async (token: string) => {
+  if (isBrowser()) {
+    localStorage.setItem("token", token);
+  }
 };
 
 export const logout = () => {
-  localStorage.removeItem("token");
+  if (isBrowser()) {
+    localStorage.removeItem("token");
+  }
 };
 
 export const getUser = () => {
-  const token = localStorage.getItem("token");
-  return token ? JSON.parse(atob(token.split(".")[1])) : null;
+  if (isBrowser()) {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    return token;
+  }
+  return null;
 };

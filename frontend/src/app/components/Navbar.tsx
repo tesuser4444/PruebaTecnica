@@ -2,9 +2,27 @@
 
 import Link from "next/link";
 import { logout, getUser } from "../lib/auth";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const user = getUser();
+  const [token, setToken] = useState<string>('');
+  const router = useRouter();
+
+  // Fetch the user token on component mount
+  useEffect(() => {
+    const _token = getUser();
+    if (_token) {
+      setToken(_token); // Set the token state correctly
+    }
+  }, []);
+
+  // Handle logout
+  const onLogout = () => {
+    logout(); // Clear the token from storage
+    setToken(''); // Clear the token state
+    router.push('/'); // Redirect to the home page
+  };
 
   return (
     <nav className="p-4 bg-blue-500 text-white flex justify-between">
@@ -12,12 +30,12 @@ export default function Navbar() {
         Home
       </Link>
       <div>
-        {user ? (
+        {token ? ( // Check if token exists
           <>
             <Link href="/dashboard" className="mr-4">
               Dashboard
             </Link>
-            <button onClick={logout}>Logout</button>
+            <button onClick={onLogout}>Logout</button>
           </>
         ) : (
           <>
