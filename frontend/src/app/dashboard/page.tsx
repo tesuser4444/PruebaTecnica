@@ -2,13 +2,16 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getUser } from "../lib/auth";
 
 export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/login");
-    
+    const user = getUser();
+    if (!user) {
+      router.push("/login");
+    }
   }, [router]);
 
   return (

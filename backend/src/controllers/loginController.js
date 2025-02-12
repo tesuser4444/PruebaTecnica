@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { prisma, SECRET_KEY } from "../app.js";
 import {loginSchema} from "../validators/loginSchema.js";

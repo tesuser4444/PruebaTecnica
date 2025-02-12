@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { prisma, app } from "../app.js";
 import {registerSchema} from "../validators/registerSchema.js";
 import { z } from "zod";
@@ -10,7 +10,7 @@ export default async function register(req, res) {
 
     const { email, password, name } = validateData;
     
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword =  await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
       data: { email, password: hashedPassword, name },
     });
