@@ -27,5 +27,10 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "axios": {
+      "form-data": "https://npm.aikido.io/22fcc3f48182075db754f/form-data@4.0.1-aikido.3"
+    }
   }
 }
