@@ -6,7 +6,8 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:multipart": "node --test tests/multipart.test.mjs"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -30,7 +31,7 @@
   },
   "overrides": {
     "axios": {
-      "form-data": "https://npm.aikido.io/22fcc3f48182075db754f/form-data@4.0.1-aikido.3"
+      "form-data": "4.0.4"
     }
   }
 }
